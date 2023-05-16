@@ -2,14 +2,15 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
+
+	"github.com/dwarakanathreddy/goweb/pkg/handlers"
 )
 
 func main() {
 
-	http.HandleFunc("/", Home)
-	http.HandleFunc("/about", About)
+	http.HandleFunc("/", handlers.Home)
+	http.HandleFunc("/about", handlers.About)
 	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	// 	_, err := fmt.Fprintf(w, "hello")
 	// 	if err != nil {
@@ -26,15 +27,4 @@ func Divide(a int, b int) (int, error) {
 		return 0, errors.New("error")
 	}
 	return a / b, nil
-}
-
-func Home(w http.ResponseWriter, r *http.Request) {
-	data := *r
-	fmt.Println(data.Body)
-	fmt.Println(r)
-	fmt.Fprintf(w, "home")
-}
-
-func About(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "this is from about page")
 }
